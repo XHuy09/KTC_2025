@@ -12,10 +12,8 @@ const Button2 = ({fullName, position, leftIcon,smallIcon, rightIcon, } : TButton
   return (
     <button className={`${styles.button}`}>
         {leftIcon}
-        <div className={styles.buttonText}>
-          <p>{fullName}</p>
-          <span>{smallIcon} {position}</span>
-        </div>
+          <p>{fullName}</p> 
+          <span>{smallIcon} {position}</span> 
         {rightIcon}
     </button>
   )
