@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Đăng Ký</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10">
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h2 class="text-2xl font-bold mb-4 text-center">Biểu mẫu đăng ký</h2>
+    <form id="registerForm" class="space-y-4">
+
+      <!-- Họ và tên -->
+      <div>
+        <label class="font-semibold">Họ và tên *</label>
+        <input type="text" id="fullName" class="border p-2 w-full rounded mt-1" />
+        <p id="fullNameError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="font-semibold">Email *</label>
+        <input type="email" id="email" class="border p-2 w-full rounded mt-1" />
+        <p id="emailError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Mật khẩu -->
+      <div>
+        <label class="font-semibold">Mật khẩu *</label>
+        <input type="password" id="password" class="border p-2 w-full rounded mt-1" />
+        <p id="passwordError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Xác nhận mật khẩu -->
+      <div>
+        <label class="font-semibold">Xác nhận mật khẩu *</label>
+        <input type="password" id="confirmPassword" class="border p-2 w-full rounded mt-1" />
+        <p id="confirmPasswordError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Số điện thoại -->
+      <div>
+        <label class="font-semibold">Số điện thoại *</label>
+        <input type="tel" id="phone" class="border p-2 w-full rounded mt-1" />
+        <p id="phoneError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Giới tính -->
+      <div>
+        <span class="font-semibold">Giới tính *</span>
+        <div class="mt-1 space-x-4">
+          <label><input type="radio" name="gender" value="Nam"> Nam</label>
+          <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+          <label><input type="radio" name="gender" value="Khác"> Khác</label>
+        </div>
+        <p id="genderError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Ngày sinh -->
+      <div>
+        <label class="font-semibold">Ngày sinh *</label>
+        <input type="date" id="dob" class="border p-2 w-full rounded mt-1" />
+        <p id="dobError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Quốc gia -->
+      <div>
+        <label class="font-semibold">Quốc gia *</label>
+        <select id="country" class="border p-2 w-full rounded mt-1">
+          <option value="">-- Chọn quốc gia --</option>
+          <option value="vn">Việt Nam</option>
+          <option value="us">Mỹ</option>
+          <option value="jp">Nhật</option>
+        </select>
+        <p id="countryError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Sở thích -->
+      <div>
+        <label class="font-semibold">Sở thích *</label>
+        <div class="space-x-4 mt-1">
+          <label><input type="checkbox" class="hobby" value="Đọc sách"> Đọc sách</label>
+          <label><input type="checkbox" class="hobby" value="Du lịch"> Du lịch</label>
+          <label><input type="checkbox" class="hobby" value="Nghe nhạc"> Nghe nhạc</label>
+        </div>
+        <p id="hobbyError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Ảnh đại diện -->
+      <div>
+        <label class="font-semibold">Ảnh đại diện (tùy chọn)</label>
+        <input type="file" id="avatar" accept=".jpg,.jpeg,.png" class="mt-1" />
+        <p id="avatarError" class="text-red-500 text-sm hidden"></p>
+      </div>
+
+      <!-- Tiểu sử -->
+      <div>
+        <label class="font-semibold">Tiểu sử (tối đa 300 ký tự)</label>
+        <textarea id="bio" rows="3" maxlength="300" class="border p-2 w-full rounded mt-1"></textarea>
+        <p id="bioCount" class="text-sm text-gray-500">0 / 300</p>
+      </div>
+
+      <!-- Nút submit -->
+      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded w-full hover:bg-blue-700">
+        Đăng ký
+      </button>
+
+      <p id="formSuccess" class="text-green-600 text-center font-semibold mt-2 hidden">
+        Đăng ký thành công!
+      </p>
+    </form>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    $('bio').addEventListener('input', e => {
+      $('bioCount').textContent = `${e.target.value.length} / 300`;
+    });
+
+    $('registerForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      function showError(id, msg) {
+        const el = $(id);
+        el.textContent = msg;
+        el.classList.remove('hidden');
+        valid = false;
+      }
+
+      function hideError(id) {
+        $(id).classList.add('hidden');
+      }
+
+      // Họ tên
+      $('fullName').value.trim().length < 3
+        ? showError('fullNameError', 'Họ tên ít nhất 3 ký tự')
+        : hideError('fullNameError');
+
+      // Email
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim());
+      !emailValid
+        ? showError('emailError', 'Email không hợp lệ')
+        : hideError('emailError');
+
+      // Mật khẩu
+      const pass = $('password').value;
+      const passValid = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(pass);
+      !passValid
+        ? showError('passwordError', 'Tối thiểu 8 ký tự, gồm chữ và số')
+        : hideError('passwordError');
+
+      // Xác nhận mật khẩu
+      pass !== $('confirmPassword').value
+        ? showError('confirmPasswordError', 'Mật khẩu không khớp')
+        : hideError('confirmPasswordError');
+
+      // Điện thoại
+      const phoneValid = /^\d{10,}$/.test($('phone').value.trim());
+      !phoneValid
+        ? showError('phoneError', 'Số điện thoại không hợp lệ')
+        : hideError('phoneError');
+
+      // Giới tính
+      const genderChecked = document.querySelector('input[name="gender"]:checked');
+      !genderChecked
+        ? showError('genderError', 'Vui lòng chọn giới tính')
+        : hideError('genderError');
+
+      // Ngày sinh > 18 tuổi
+      const dob = new Date($('dob').value);
+      const now = new Date();
+      const age = (now - dob) / (365.25 * 24 * 60 * 60 * 1000);
+      if (!dob || isNaN(dob)) {
+        showError('dobError', 'Vui lòng chọn ngày sinh');
+      } else if (age < 18) {
+        showError('dobError', 'Phải đủ 18 tuổi');
+      } else {
+        hideError('dobError');
+      }
+
+      // Quốc gia
+      $('country').value === ''
+        ? showError('countryError', 'Vui lòng chọn quốc gia')
+        : hideError('countryError');
+
+      // Sở thích
+      const hobbies = document.querySelectorAll('.hobby:checked');
+      hobbies.length === 0
+        ? showError('hobbyError', 'Chọn ít nhất một sở thích')
+        : hideError('hobbyError');
+
+      // Ảnh đại diện
+      const file = $('avatar').files[0];
+      if (file && !/\.(jpg|jpeg|png)$/i.test(file.name)) {
+        showError('avatarError', 'Chỉ chấp nhận ảnh jpg, jpeg, png');
+      } else {
+        hideError('avatarError');
+      }
+
+      // Nếu không có lỗi
+      if (valid) {
+        $('formSuccess').classList.remove('hidden');
+      } else {
+        $('formSuccess').classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

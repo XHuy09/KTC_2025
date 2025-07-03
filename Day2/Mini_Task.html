@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Task</title>
+  <style>
+    .container > div {
+    margin-bottom: 30px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: lightgray;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .box.highlight {
+      background-color: yellow;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    li {
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+    .hoverBox {
+      width: 200px;
+      height: 100px;
+      background-color: lightgray;
+      transition: background-color 0.3s;
+    }
+    .nameInput {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .error-border {
+      border-color: red !important;
+    }
+
+    .nameError {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    #boxContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .colorBox {
+      width: 60px;
+      height: 60px;
+      background-color: lightcoral;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .todoList {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .todoList li {
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .mainPhoto {
+      width: 200px;
+      height: 100px;
+      border: 2px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: auto;
+      margin-right: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .thumbnail:hover {
+      border-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 1 -->
+    <div>
+      <div id="changeTextBtn">Hello</div>
+      <button onclick="textDisplay()">Click</button>
+      <script>
+        function textDisplay() {
+          document.getElementById("changeTextBtn").innerText = "Hello, Java Script!";
+        }
+      </script>
+    </div>
+
+    <!-- 2 -->
+    <div>
+      <div class="box"></div>
+      <button id="toggleHighlightBtn">Toggle Highlight</button>
+      <script>
+        const toggleBtn = document.getElementById("toggleHighlightBtn");
+        const box = document.querySelector(".box");
+
+        toggleBtn.addEventListener("click", function () {
+          box.classList.toggle("highlight");
+        });
+      </script>
+    </div>
+
+    <!-- 3 - 4 -->
+    <div>
+      <input type="text" id="itemInput" placeholder="Nhập nội dung">
+      <button id="addItemBtn">Add Item</button>
+      <ul id="itemList"></ul>
+
+      <script>
+        const input = document.getElementById("itemInput");
+        const addItemBtn = document.getElementById("addItemBtn");
+        const list = document.getElementById("itemList");
+
+        addItemBtn.addEventListener("click", function () {
+          const value = input.value.trim();
+
+          if (value !== "") {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${value}</span>
+                <button class="deleteBtn">Xóa</button>
+            `;
+            list.appendChild(li);
+            input.value = "";
+      }
+        });
+        list.addEventListener("click", function (event) {
+            if (event.target.classList.contains("deleteBtn")) {
+                const li = event.target.closest("li");
+                li.remove();
+            }
+        });
+      </script>
+    </div>
+
+    <!-- 5 -->
+    <div>
+        <img id="mainImage" src="cat.png" alt="cat" style="width: 150px; height: auto;">
+        <button id="changeImageBtn">Change Image</button>
+        <script>
+            const changeImageBtn = document.getElementById("changeImageBtn");
+            const img = document.getElementById("mainImage");
+
+            changeImageBtn.addEventListener("click", function(event){
+                img.src = "dog.png";
+            });
+        </script>
+    </div>
+
+    <!-- 6 -->
+    <div>
+        <input type="text" id="usernameInput">
+        <button id="submitUsername">Submit</button>
+        <script>
+            const inputUserName = document.getElementById("usernameInput")
+            const submitBtn = document.getElementById("submitUsername");
+
+            submitBtn.addEventListener("click", function(event){
+                const username = inputUserName.value.trim();
+                if(username !== ""){
+                    alert("Name you input is: " + username)
+                }else{
+                    alert("Please enter name")
+                }
+            });
+        </script>
+    </div>
+
+    <!-- 7 -->
+     <div>
+        <button class="colorBtn">Red</button>
+        <button class="colorBtn">Blue</button>
+        <button class="colorBtn">Yellow</button>
+
+        <script>
+            const buttons = document.querySelectorAll(".colorBtn");
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    alert("You select: " + btn.textContent);
+                });
+            });
+  </script>
+     </div>
+
+     <!-- 8 -->
+      <div>
+        <div class="hoverBox"></div>
+        <script>
+            const boxx = document.querySelector(".hoverBox");
+
+            boxx.addEventListener("mouseenter", function () {
+                boxx.style.backgroundColor = "lightblue";
+            });
+
+            boxx.addEventListener("mouseleave", function () {
+                boxx.style.backgroundColor = "lightgray";
+            });
+        </script>
+      </div>
+
+    <!-- 9 -->
+    <div>
+        <p id="clockDisplay">--:--:--</p>
+        <script>
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                const timeString = `${hours}:${minutes}:${seconds}`;
+                    document.getElementById("clockDisplay").textContent = timeString;
+                }
+            updateClock();
+            setInterval(updateClock, 1000);
+        </script>
+    </div>
+
+    <!-- 10 -->
+     <div>
+        <input type="text" id="emailInput">
+        <button id="validateBtn">Enter Email</button>
+        <p id="errorMessage"></p>
+
+        <script>
+            const emailInput = document.getElementById("emailInput");
+            const validateBtn = document.getElementById("validateBtn");
+            const errorMessage = document.getElementById("errorMessage");
+
+            function isValidEmail(email) {
+      
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            validateBtn.addEventListener("click", function () {
+                const email = emailInput.value.trim();
+
+                if (email === "") {
+                    errorMessage.textContent = "Vui lòng nhập email.";
+                } else if (!isValidEmail(email)) {
+                    errorMessage.textContent = "Email không hợp lệ.";
+                } else {
+                    errorMessage.textContent = "";
+                    alert("Email hợp lệ: " + email);
+                }
+            });
+        </script>
+    </div>
+
+    <!-- 11 -->
+    <div>
+        <p id="infoPara">This is text will be hide went you click button.</p>
+        <button id="hideParaBtn">Hide Text</button>
+
+        <script>
+            const hideBtn = document.getElementById("hideParaBtn");
+            const paragraph = document.getElementById("infoPara");
+
+            hideBtn.addEventListener("click", function () {
+            paragraph.style.display = "none";
+            });
+        </script>
+    </div>
+
+    <!-- 12 -->
+     <div>
+        <p id="greetingText"></p>
+        <script>
+            function getGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+
+            if (hour >= 5 && hour < 12) {
+                return "Good Morning";
+            } else if (hour >= 12 && hour < 18) {
+                return "Good Afternoon";
+            } else if (hour >= 18 && hour <= 22) {
+                return "Good Evening";
+            } else {
+                return "Hello";
+            }
+            }
+            const greetingPara = document.getElementById("greetingText");
+            greetingPara.textContent = getGreeting();
+        </script>
+     </div>
+
+    <!-- 13 -->
+      <div>
+        <input type="text" id="nameInput">
+        <button id="formSubmit">Submit</button>
+        <div id="nameError"></div>
+        
+        <script>
+            const nameInput = document.getElementById("nameInput");
+            const formSubmit = document.getElementById("formSubmit");
+            const nameError = document.getElementById("nameError");
+
+            formSubmit.addEventListener("click", function () {
+            const name = nameInput.value.trim();
+
+            if (name === "") {
+                nameInput.classList.add("error-border");
+                nameError.textContent = "Enter name!";
+            } else {
+                nameInput.classList.remove("error-border");
+                nameError.textContent = "";
+                alert("Tên đã nhập: " + name);
+            }   
+            });
+        </script>
+    </div>
+
+    <!-- 14 -->
+    <div>
+        <button id="onceBtn">Click to Disable</button>
+        <script>
+            const onceBtn = document.getElementById("onceBtn");
+            onceBtn.addEventListener("click", function(){
+                onceBtn.disabled = true;
+            });
+        </script>
+    </div>
+
+    <!-- 15 -->
+    <div>
+        <label for="bioInput">Paragraph (max 200 characters ):</label><br>
+        <textarea id="bioInput" maxlength="200"></textarea>
+        <p id="charCount">Remainder: 200 characters</p>
+
+        <script>
+            const bioInput = document.getElementById("bioInput");
+            const charCount = document.getElementById("charCount");
+            const maxLength = 200;
+
+            bioInput.addEventListener("input", function () {
+            const remaining = maxLength - bioInput.value.length;
+            charCount.textContent = `Còn lại: ${remaining} ký tự`;
+
+            if (remaining <= 20) {
+                charCount.classList.add("warning");
+            } else {
+                charCount.classList.remove("warning");
+            }
+            });
+        </script>
+    </div>
+
+    <!-- 16 -->
+     <div>
+        <div id="boxContainer"></div>
+        <button id="addBoxBtn">Add colors</button>
+
+        <script>
+            const addBtn = document.getElementById("addBoxBtn");
+            const container = document.getElementById("boxContainer");
+
+            function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+            }
+            addBtn.addEventListener("click", function () {
+            const newBox = document.createElement("div");
+            newBox.classList.add("colorBox");
+            newBox.style.backgroundColor =  getRandomColor(); 
+            container.appendChild(newBox);
+            });
+        </script>
+     </div>
+
+    <!-- 17 -->
+    <div>
+        <ul id="todoList">
+            <li>Learn JavaScript</li>
+            <li>Do Homework</li>
+            <li>Work Everday</li>
+        </ul>
+
+        <script>
+            const listTodo = document.getElementById("todoList");
+
+            listTodo.addEventListener("click", function (event) {
+                if (event.target.tagName === "LI") {
+                    event.target.classList.toggle("completed");
+                }
+            });
+        </script>
+    </div>
+
+    <!-- 18 -->
+    <div>
+        <label for="passwordInput">Passwork:</label><br>
+        <input type="password" id="passwordInput" ><br>
+        <input type="checkbox" id="togglePassword">
+        <label for="togglePassword">Show Paswwork</label>
+
+        <script>
+            const passwordInput = document.getElementById("passwordInput");
+            const togglePassword = document.getElementById("togglePassword");
+
+            togglePassword.addEventListener("change", function () {
+                if (togglePassword.checked) {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+            });
+        </script>
+    </div>
+
+    <!-- 19 -->
+    <div>
+        <div class="optionGroup">
+            <label><input type="checkbox" class="optionBox"> Option 1</label><br>
+            <label><input type="checkbox" class="optionBox"> Option 2</label><br>
+            <label><input type="checkbox" class="optionBox"> Option 3</label><br>
+            <label><input type="checkbox" class="optionBox"> Option 4</label>
+        </div>
+        <p>Selected: <span id="checkedCount">0</span> Options</p>
+        <script>
+            const checkboxes = document.querySelectorAll(".optionBox");
+            const countDisplay = document.getElementById("checkedCount");
+
+            function updateCheckedCount() {
+            const checkedCount = document.querySelectorAll(".optionBox:checked").length;
+            countDisplay.textContent = checkedCount;
+            }
+            checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", updateCheckedCount);
+            });
+        </script>
+    </div>
+    
+    <!-- 20 -->
+    <div>
+        <img id="mainPhoto" src="cat.png" alt="Main Photo">
+
+        <div>
+            <img class="thumbnail" src="dog.png" alt="thumb1">
+            <img class="thumbnail" src="cat.png" alt="thumb2">
+            <img class="thumbnail" src="dog.png" alt="thumb3">
+        </div>
+
+        <script>
+            const thumbnails = document.querySelectorAll(".thumbnail");
+            const mainPhoto = document.getElementById("mainPhoto");
+
+            thumbnails.forEach(function (thumb) {
+                thumb.addEventListener("click", function () {
+                    mainPhoto.src = thumb.src;
+                    mainPhoto.alt = thumb.alt;
+                });
+            });
+        </script>
+    </div>
+  </div>
+</body>
+</html>

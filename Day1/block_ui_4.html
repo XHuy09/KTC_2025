@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOCK UI 4</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f6fc;
+      padding: 40px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      width: 250px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .card p.role {
+      margin: 0 0 15px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .info {
+      padding: 0 20px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .info .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed #ddd;
+    }
+
+    .label {
+      text-align: left;
+      color: #999;
+    }
+
+    .value {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .block {
+      margin: 15px 20px;
+      padding: 10px;
+      color: white;
+      border-radius: 4px;
+      text-align: left;
+    }
+
+    .email {
+      background: #f87171;
+    }
+
+    .email.purple {
+      background: #a855f7;
+    }
+
+    .email.cyan {
+      background: #06b6d4;
+    }
+
+    .phone {
+      background: #4ade80;
+      margin-top: 10px;
+    }
+
+    .phone.orange {
+      background: #facc15;
+    }
+
+    .phone.pink {
+      background: #f472b6;
+    }
+
+    .block i {
+      margin-right: 8px;
+    }
+
+    .email span, .phone span {
+      font-weight: bold;
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Card 1 -->
+  <div class="card">
+    <img src="https://i.ibb.co/ncYt99T/woman1.jpg" alt="Robort Pattison">
+    <h3>ROBORT PATTISON</h3>
+    <p class="role">Developing</p>
+    <div class="info">
+      <div class="row"><div class="label"><i class="fa fa-calendar"></i> DOB</div><div class="value">23/05/2014</div></div>
+      <div class="row"><div class="label"><i class="fa fa-heart"></i> BG</div><div class="value">B+</div></div>
+      <div class="row"><div class="label"><i class="fa fa-graduation-cap"></i> EDU</div><div class="value">MCA</div></div>
+      <div class="row"><div class="label"><i class="fa fa-location-dot"></i> RES</div><div class="value">Bangalore</div></div>
+    </div>
+    <div class="block email"><i class="fa fa-envelope"></i> EMAIL ID<span>robot12@gmail.com</span></div>
+    <div class="block phone"><i class="fa fa-phone"></i> PHONE NO<span>8665543219</span></div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <img src="https://i.ibb.co/Ycjz5MC/woman2.jpg" alt="James Smith">
+    <h3>JAMES SMITH</h3>
+    <p class="role">Designer</p>
+    <div class="info">
+      <div class="row"><div class="label"><i class="fa fa-calendar"></i> DOB</div><div class="value">23/05/2014</div></div>
+      <div class="row"><div class="label"><i class="fa fa-heart"></i> BG</div><div class="value">B+</div></div>
+      <div class="row"><div class="label"><i class="fa fa-graduation-cap"></i> EDU</div><div class="value">MCA</div></div>
+      <div class="row"><div class="label"><i class="fa fa-location-dot"></i> RES</div><div class="value">Bangalore</div></div>
+    </div>
+    <div class="block email cyan"><i class="fa fa-envelope"></i> EMAIL ID<span>smith12@gmail.com</span></div>
+    <div class="block phone"><i class="fa fa-phone"></i> PHONE NO<span>8225543219</span></div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <img src="https://i.ibb.co/xCscb5r/woman3.jpg" alt="Tom Hanks">
+    <h3>TOM HANKS</h3>
+    <p class="role">UI Designer</p>
+    <div class="info">
+      <div class="row"><div class="label"><i class="fa fa-calendar"></i> DOB</div><div class="value">23/05/2014</div></div>
+      <div class="row"><div class="label"><i class="fa fa-heart"></i> BG</div><div class="value">B+</div></div>
+      <div class="row"><div class="label"><i class="fa fa-graduation-cap"></i> EDU</div><div class="value">MCA</div></div>
+      <div class="row"><div class="label"><i class="fa fa-location-dot"></i> RES</div><div class="value">Bangalore</div></div>
+    </div>
+    <div class="block email"><i class="fa fa-envelope"></i> EMAIL ID<span>peter1@gmail.com</span></div>
+    <div class="block phone orange"><i class="fa fa-phone"></i> PHONE NO<span>8225543929</span></div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <img src="https://i.ibb.co/0ntHkqz/woman4.jpg" alt="Silvester Stalin">
+    <h3>SILVESTER STALIN</h3>
+    <p class="role">Testing</p>
+    <div class="info">
+      <div class="row"><div class="label"><i class="fa fa-calendar"></i> DOB</div><div class="value">23/05/2014</div></div>
+      <div class="row"><div class="label"><i class="fa fa-heart"></i> BG</div><div class="value">B+</div></div>
+      <div class="row"><div class="label"><i class="fa fa-graduation-cap"></i> EDU</div><div class="value">MCA</div></div>
+      <div class="row"><div class="label"><i class="fa fa-location-dot"></i> RES</div><div class="value">Bangalore</div></div>
+    </div>
+    <div class="block email purple"><i class="fa fa-envelope"></i> EMAIL ID<span>point12@gmail.com</span></div>
+    <div class="block phone pink"><i class="fa fa-phone"></i> PHONE NO<span>9937924265</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

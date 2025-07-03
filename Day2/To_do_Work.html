@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+
+    // Bật dark nếu đã lưu
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen p-10 transition-colors duration-300">
+    <div class="container mx-auto">
+        <div class="flex flex-row">
+            <div class="resume_1 w-full md:w-[300px] p-5 flex flex-col gap-y-[20px] text-center"><h1 class="font-bold">Dashboard</h1></div>
+            <div class="resume_2 w-full md:w-[300px] p-5 flex flex-col gap-y-[20px] text-center">
+                <p id="clockDisplay">--:--:--</p>
+                <script>
+                    function updateClock() {
+                        const now = new Date();
+                        const hours = String(now.getHours()).padStart(2, '0');
+                        const minutes = String(now.getMinutes()).padStart(2, '0');
+                        const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                        const timeString = `${hours}:${minutes}:${seconds}`;
+                            document.getElementById("clockDisplay").textContent = timeString;
+                        }
+                    updateClock();
+                    setInterval(updateClock, 1000);
+                </script>
+            </div>
+            <div class="resume_3 w-full md:w-[300px] p-5 flex flex-col gap-y-[20px] text-center">
+                <p id="greetingText"></p>
+                <script>
+                    function getGreeting() {
+                    const now = new Date();
+                    const hour = now.getHours();
+
+                    if (hour >= 5 && hour < 12) {
+                        return "Good Morning";
+                    } else if (hour >= 12 && hour < 18) {
+                        return "Good Afternoon";
+                    } else if (hour >= 18 && hour <= 22) {
+                        return "Good Evening";
+                    } else {
+                        return "Hello";
+                    }
+                    }
+                    const greetingPara = document.getElementById("greetingText");
+                    greetingPara.textContent = getGreeting();
+                </script>
+            </div>
+            <div class="resume_4 w-full md:w-[300px] p-5 flex flex-col gap-y-[20px]  ">
+                
+                <button id="toggleMode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 absolute top-10 right-20">
+                        <path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <script>
+                    const toggleBtn = document.getElementById('toggleMode');
+                    
+                    toggleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    updateButtonText();
+                    });
+                </script> 
+            </div>
+        </div>
+        </div>
+    <section id="todo">
+        <h2 class="text-2xl font-bold mb-4">To‑Do List</h2>
+        <div class="flex items-center gap-2 mb-2">
+                <input type="text" id="taskInput" placeholder="Enter a task" class="border rounded px-3 py-2 flex-1" />
+                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" id="addTaskBtn">Add Task</button>
+        </div>
+        <div id="taskError" class="text-red-500 text-sm mb-2 hidden"></div>
+        <div class="flex items-center gap-2 mb-4">
+            <span>Filters:</span>
+            <button class="btn-filter px-3 py-1 border rounded active bg-blue-600 text-white" data-filter="all">All</button>
+            <button class="btn-filter px-3 py-1 border rounded" data-filter="completed">Completed</button>
+            <button class="btn-filter px-3 py-1 border rounded" data-filter="incomplete">Incomplete</button>
+        </div>
+        <ul id="taskList" class="space-y-2"></ul>
+    </section>
+
+    <section id="notes" class="mt-10">
+        <h2 class="text-2xl font-bold mb-4">Sticky Notes</h2>
+        <div class="flex items-center gap-2 mb-2">
+            <input type="text" id="noteInput" placeholder="Write a note…" class="border rounded px-3 py-2 flex-1" />
+            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" id="addNoteBtn">Add Note</button>
+        </div>
+        <div id="noteError" class="text-red-500 text-sm mb-2 hidden"></div>
+        <div id="notesContainer" class="flex flex-wrap gap-4"></div>
+    </section>
+
+    <script>
+        const qs = (s) => document.querySelector(s);
+        const qsa = (s) => document.querySelectorAll(s);
+        function save(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+        function load(key, fallback) {
+            const d = localStorage.getItem(key);
+            return d ? JSON.parse(d) : fallback;
+        }
+
+        let tasks = load("tasks", []);
+        let currentFilter = "all";
+
+        const taskInput = qs("#taskInput");
+        const taskError = qs("#taskError");
+        const taskList = qs("#taskList");
+
+        function renderTasks() {
+            taskList.innerHTML = "";
+            tasks
+                .filter((t) => {
+                    if (currentFilter === "all") return true;
+                    if (currentFilter === "completed") return t.completed;
+                return !t.completed;
+                })
+                .forEach((task) => {
+                    const li = document.createElement("li");
+                    li.className = `flex items-center justify-between p-3 bg-white border rounded ${
+                    task.completed ? "line-through bg-green-100" : ""
+                }`;
+
+            const cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.checked = task.completed;
+            cb.className = "mr-2";
+            cb.addEventListener("change", () => {
+                task.completed = cb.checked;
+                save("tasks", tasks);
+                renderTasks();
+            });
+
+            const span = document.createElement("span");
+            span.className = "flex-1 mx-2";
+            span.textContent = task.text;
+
+            const del = document.createElement("button");
+            del.textContent = "Delete";
+            del.className = "border px-3 py-1 rounded hover:bg-gray-200";
+            del.addEventListener("click", () => {
+                tasks = tasks.filter((t) => t.id !== task.id);
+                save("tasks", tasks);
+                renderTasks();
+            });
+
+            li.append(cb, span, del);
+            taskList.appendChild(li);
+          });
+        }
+
+        qs("#addTaskBtn").addEventListener("click", () => {
+            const val = taskInput.value.trim();
+            if (!val) {
+                taskError.textContent = "Please enter a task.";
+                taskError.classList.remove("hidden");
+                return;
+            }
+            taskError.classList.add("hidden");
+            tasks.push({ id: Date.now(), text: val, completed: false });
+            save("tasks", tasks);
+            taskInput.value = "";
+            renderTasks();
+        });
+
+        qsa(".btn-filter").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                qsa(".btn-filter").forEach((b) => b.classList.remove("bg-blue-600", "text-white"));
+                btn.classList.add("bg-blue-600", "text-white");
+                currentFilter = btn.dataset.filter;
+                renderTasks();
+            });
+        });
+
+        let notes = load("notes", []);
+        const palette = ["#a0d468", "#4fc1e9", "#ffce54", "#ec87c0", "#48cfad", "#ac92ec"];
+
+        const noteInput = qs("#noteInput");
+        const noteError = qs("#noteError");
+        const notesContainer = qs("#notesContainer");
+
+        function renderNotes() {
+            notesContainer.innerHTML = "";
+            notes.forEach((note) => {
+                const div = document.createElement("div");
+                div.className = "relative w-44 min-h-[100px] p-3 rounded text-black break-words";
+                div.style.backgroundColor = note.color;
+                div.textContent = note.text;
+
+            const close = document.createElement("button");
+            close.textContent = "×";
+            close.className = "absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs leading-5 font-bold";
+            close.addEventListener("click", () => {
+                notes = notes.filter((n) => n.id !== note.id);
+                save("notes", notes);
+                renderNotes();
+            });
+
+            div.appendChild(close);
+            notesContainer.appendChild(div);
+            });
+        }
+
+        qs("#addNoteBtn").addEventListener("click", () => {
+            const val = noteInput.value.trim();
+            if (!val) {
+                noteError.textContent = "Please write a note.";
+                noteError.classList.remove("hidden");
+            return;
+            }
+            noteError.classList.add("hidden");
+            const color = palette[Math.floor(Math.random() * palette.length)];
+            notes.push({ id: Date.now(), text: val, color });
+            save("notes", notes);
+            noteInput.value = "";
+            renderNotes();
+        });
+
+        renderTasks();
+        renderNotes();
+    </script>
+</body>
+</html>

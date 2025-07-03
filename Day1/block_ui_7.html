@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOCK UI 7</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .process {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .red { background-color: #ef4444; }       /* Idea */
+    .cyan { background-color: #06b6d4; }      /* Prototype */
+    .green { background-color: #22c55e; }     /* Coding */
+    .purple { background-color: #a855f7; }    /* Testing */
+
+    .label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .arrow {
+      font-size: 24px;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .process {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="process">
+    <div class="step">
+      <div class="circle red"><i class="fas fa-lightbulb"></i></div>
+      <div class="label">Idea</div>
+    </div>
+    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+
+    <div class="step">
+      <div class="circle cyan"><i class="fas fa-desktop"></i></div>
+      <div class="label">Prototype</div>
+    </div>
+    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+
+    <div class="step">
+      <div class="circle green"><i class="fas fa-code"></i></div>
+      <div class="label">Coding</div>
+    </div>
+    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+
+    <div class="step">
+      <div class="circle purple"><i class="fas fa-check-square"></i></div>
+      <div class="label">Testing</div>
+    </div>
+  </div>
+
+</body>
+</html>

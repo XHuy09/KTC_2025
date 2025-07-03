@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BLOCK UI 3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      width: 220px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h4 {
+      margin: 0;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+
+    .card .value {
+      font-size: 28px;
+      font-weight: bold;
+      color: #24b6eb;
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+
+    .bars {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 100px;
+      margin-top: auto;
+    }
+
+    .bar {
+      width: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .segment {
+      width: 100%;
+      border-radius: 2px;
+      transition: height 0.4s ease-in-out;
+    }
+
+    .bar-label {
+      margin-top: 6px;
+      font-size: 10px;
+      color: #888;
+    }
+
+    /* Màu cột */
+    .red { background: #f87171; }
+    .green { background: #4ade80; }
+    .yellow { background: #facc15; }
+    .blue { background: #38bdf8; }
+    .orange { background: #fb923c; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Card 1 -->
+    <div class="card">
+      <h4>TODAY'S VISITORS</h4>
+      <div class="value">24,599</div>
+      <div class="bars">
+        <div class="bar">
+          <div class="segment red" style="height: 30px;"></div>
+          <div class="bar-label">MON</div>
+        </div>
+        <div class="bar">
+          <div class="segment green" style="height: 50px;"></div>
+          <div class="bar-label">TUE</div>
+        </div>
+        <div class="bar">
+          <div class="segment yellow" style="height: 70px;"></div>
+          <div class="bar-label">WED</div>
+        </div>
+        <div class="bar">
+          <div class="segment blue" style="height: 90px;"></div>
+          <div class="bar-label">THU</div>
+        </div>
+        <div class="bar">
+          <div class="segment orange" style="height: 60px;"></div>
+          <div class="bar-label">FRI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h4>YESTERDAY'S VISITORS</h4>
+      <div class="value">15,699</div>
+      <div class="bars">
+        <div class="bar"><div class="segment red" style="height: 25px;"></div><div class="bar-label">MON</div></div>
+        <div class="bar"><div class="segment green" style="height: 35px;"></div><div class="bar-label">TUE</div></div>
+        <div class="bar"><div class="segment yellow" style="height: 45px;"></div><div class="bar-label">WED</div></div>
+        <div class="bar"><div class="segment blue" style="height: 65px;"></div><div class="bar-label">THU</div></div>
+        <div class="bar"><div class="segment orange" style="height: 40px;"></div><div class="bar-label">FRI</div></div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <h4>TOTAL DOWNLOADS</h4>
+      <div class="value">1,24,599</div>
+      <div class="bars">
+        <div class="bar"><div class="segment red" style="height: 20px;"></div><div class="bar-label">MON</div></div>
+        <div class="bar"><div class="segment green" style="height: 40px;"></div><div class="bar-label">TUE</div></div>
+        <div class="bar"><div class="segment yellow" style="height: 80px;"></div><div class="bar-label">WED</div></div>
+        <div class="bar"><div class="segment blue" style="height: 70px;"></div><div class="bar-label">THU</div></div>
+        <div class="bar"><div class="segment orange" style="height: 60px;"></div><div class="bar-label">FRI</div></div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <h4>CURRENT INCOME</h4>
+      <div class="value">$54,599</div>
+      <div class="bars">
+        <div class="bar"><div class="segment red" style="height: 40px;"></div><div class="bar-label">MON</div></div>
+        <div class="bar"><div class="segment green" style="height: 50px;"></div><div class="bar-label">TUE</div></div>
+        <div class="bar"><div class="segment yellow" style="height: 55px;"></div><div class="bar-label">WED</div></div>
+        <div class="bar"><div class="segment blue" style="height: 65px;"></div><div class="bar-label">THU</div></div>
+        <div class="bar"><div class="segment orange" style="height: 45px;"></div><div class="bar-label">FRI</div></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

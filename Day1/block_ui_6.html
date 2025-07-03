@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLOCK UI 6</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 220px;
+      height: 220px;
+      color: white;
+      padding: 20px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card i {
+      font-size: 40px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .card p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .facebook { background: #3b82f6; }
+    .twitter { background: #06b6d4; }
+    .google { background: #f97316; }
+    .pinterest { background: #ef4444; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card facebook">
+      <i class="fab fa-facebook-f"></i>
+      <div>
+        <h3>Facebook</h3>
+        <p>5,00,000 Likes</p>
+      </div>
+    </div>
+
+    <div class="card twitter">
+      <i class="fab fa-twitter"></i>
+      <div>
+        <h3>Twitter</h3>
+        <p>40,000 Tweets</p>
+      </div>
+    </div>
+
+    <div class="card google">
+      <i class="fab fa-google-plus-g"></i>
+      <div>
+        <h3>Google +</h3>
+        <p>4,60,000 Plus</p>
+      </div>
+    </div>
+
+    <div class="card pinterest">
+      <i class="fab fa-pinterest-p"></i>
+      <div>
+        <h3>Pinterest</h3>
+        <p>34,000 Pins</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
