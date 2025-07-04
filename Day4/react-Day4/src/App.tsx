@@ -5,6 +5,7 @@ import ArticlesList from './components/ArticlesList';
 import StarRating from './components/StarRating';
 import AttrItem from './components/Attributes';
 import DeleteProduct from './components/DeleteProduct';
+import SaleList from './components/SaleList';
 
 const articles = [
   {id: 1, title: 'Ấn tượng đầu tiên Samsung Galaxy A32 4G: Với hơn 6 triệu đã có màn hình Super AMOLED 90Hz', thumbnail: 'images/SSA32.png', addTime: '4 năm trước'},
@@ -72,6 +73,9 @@ function App() {
      </section>
 
      <section className='section'>
+      <div className="section_header">
+        <h2 className="section_title">Đánh giá sản phẩm</h2>
+      </div>
       <div style={{ padding: 20 }}>
         <StarRating />
       </div>
@@ -93,6 +97,18 @@ function App() {
       <div className="section_body">
         <DeleteProduct data={products} onRemove={handleRemoveProduct} />
       </div>
+     </section>
+
+     <section className='section'>
+        <div className="section_header">
+            <h2 className="section_title">Deal of the day</h2>
+            <div className="section_extra">
+              <a href="#">View All</a>
+            </div>
+        </div>
+        <div className="section_body">
+          <SaleList dataa={accessory} />
+        </div>    
      </section>
 
     </main>

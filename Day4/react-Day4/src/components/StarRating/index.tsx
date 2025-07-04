@@ -16,7 +16,6 @@ export default function StarRating({ stars = 0 }: Props) {
 
   return (
     <div className="rating-container" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-      <span style={{ fontWeight: 'bold' }}>Chọn đánh giá của bạn</span>
       <div className="stars" style={{ display: 'flex' }}>
         {[1, 2, 3, 4, 5].map((item) => (
           <span
