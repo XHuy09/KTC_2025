@@ -7,15 +7,17 @@ import KeyTracker from './components/KeyTracker'
 import SubmissionAlert from './components/SubmissionAlert'
 import ToggleButton from './components/ToggleButton'
 import FruitSelector from './components/FruitSelector'
-import CheckboxToggle from './components/CheckboxToggle/index'
+import CheckboxToggle from './components/CheckboxToggle'
 import SearchFilter from './components/SearchFilter'
+import RegistrationForm from './components/RegistrationForm'
+import Calculator from './components/Calculator'
 
 function App() {
 
   return (
     <>
     <main className='container'>
-      <section className='section'>
+      {/* <section className='section'>
         <div className='section-header'>
           <h3>Exercise 1: Button Click Counter</h3>
         </div>
@@ -103,8 +105,12 @@ function App() {
         <div className='section-title'>
           <SearchFilter />
         </div>
-      </section>
+      </section> */}
+      {/* <RegistrationForm />  */}
+     <Calculator />
+     
     </main>
+    
     </>
   )
 }

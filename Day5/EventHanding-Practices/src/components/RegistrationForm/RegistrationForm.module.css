@@ -1,0 +1,92 @@
+.formContainer {
+  width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề form */
+.formTitle {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Nhóm form */
+.formGroup {
+  margin-bottom: 18px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Input, select, textarea chung 1 style */
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Radio / Checkbox style */
+.radioGroup label,
+.checkboxGroup label {
+  display: inline-block;
+  margin-right: 20px;
+  font-weight: 400;
+}
+
+/* Nút gửi */
+.submitBtn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.submitBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Thông báo lỗi và thành công */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.success {
+  color: green;
+  font-weight: 600;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.info {
+  font-size: 12px;
+  color: gray;
+  margin-top: 4px;
+}
