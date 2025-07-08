@@ -17,7 +17,7 @@ function App() {
   return (
     <>
     <main className='container'>
-      {/* <section className='section'>
+      <section className='section'>
         <div className='section-header'>
           <h3>Exercise 1: Button Click Counter</h3>
         </div>
@@ -105,8 +105,8 @@ function App() {
         <div className='section-title'>
           <SearchFilter />
         </div>
-      </section> */}
-      {/* <RegistrationForm />  */}
+      </section>
+      <RegistrationForm /> 
      <Calculator />
      
     </main>
