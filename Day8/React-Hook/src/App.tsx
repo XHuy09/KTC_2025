@@ -5,11 +5,10 @@ import SignForm from "./components/SignForm"
 
 function App() {
   return (
-    // <div>
-    //   <SignForm />
+    <div>
+      <SignForm />
 
-    // </div>
-    //   <RegisterForm />
+      <RegisterForm />
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-3">
       {/* Left side with illustration */}
       <div className="md:col-span-2 bg-[#eaf0f5] flex items-center justify-center p-8">
@@ -20,6 +19,7 @@ function App() {
       <div className="bg-white flex items-center justify-center p-8">
         <LoginForm />
       </div>
+    </div>
     </div>
   )
 }
