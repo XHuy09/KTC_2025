@@ -7,9 +7,10 @@ import TaskTitle from './TaskTitle';
 type Props = {
   tasks: Task[];
   onEdit?: (taskId: string | number | undefined) => void;
+  onDelete?: (taskId: string | number | undefined) => void;
 };
 
-export default function TaskList({ tasks, onEdit }: Props) {
+export default function TaskList({ tasks, onEdit, onDelete }: Props) {
   return (
     <table className="min-w-full divide-y divide-gray-200">
       <thead className="bg-gray-50">
@@ -47,15 +48,20 @@ export default function TaskList({ tasks, onEdit }: Props) {
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <TaskDate date={task.completed_date} />
             </td>
+
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{task.assignee_id || 'Unassigned'}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button
-                onClick={() => onEdit?.(task.id)}
-                className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+              <button onClick={() => onEdit?.(task.id)}
+              className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
               >
-                Edit
-              </button>
-            </td>
+              Edit
+            </button>
+            <button onClick={() => onDelete?.(task.id)}
+              className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transition-colors"
+            >
+              Delete
+            </button>
+</td>
           </tr>
         ))}
       </tbody>

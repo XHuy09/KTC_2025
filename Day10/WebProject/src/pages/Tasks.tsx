@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import TaskFilterForm from '../components/TaskFilterForm';
 import TaskList from '../components/TaskList';
 import { searchTasks } from '../utils';
-
 import type { Filter, Task } from '../types';
-import { getTasks } from '../services';
+import { getTasks, deleteTask } from '../services';
+
 
 export default function Tasks() {
   const navigate = useNavigate();
@@ -34,6 +33,21 @@ export default function Tasks() {
     navigate(`/update/${taskId}`);
   };
 
+  const handleDelete = async (taskId: string | number | undefined) => {
+  if (!taskId) return;
+
+  const confirmed = window.confirm('Bạn có chắc muốn xóa task này không?');
+  if (!confirmed) return;
+
+  try {
+    await deleteTask(taskId.toString());
+    setTasks(prev => prev.filter(task => task.id !== taskId));
+  } catch (err) {
+    console.error('Error deleting task:', err);
+    alert('Không thể xóa task');
+  }
+  };
+
   return (
     <div>
       <section className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -55,7 +69,8 @@ export default function Tasks() {
 
         <section>
           <div className="overflow-x-auto">
-            <TaskList tasks={searchTasks(tasks, filters)} onEdit={handleEdit} />
+            <TaskList tasks={searchTasks(tasks, filters)} onEdit={handleEdit} onDelete={handleDelete}/>
+
           </div>
         </section>
       </section>
