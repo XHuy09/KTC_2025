@@ -9,7 +9,7 @@ type FormData = {
   address: string;
 };
 
-// Schema với Yup
+
 const schema = yup.object().shape({
   name: yup.string().required('Name is required').min(2, 'Minimum 2 characters'),
   email: yup.string().required('Email is required').email('Invalid email'),

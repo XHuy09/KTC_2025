@@ -1,4 +1,3 @@
-// src/context/CartProvider.tsx
 import { useReducer } from 'react';
 import type { ReactNode } from 'react';
 import { CartContext } from './CartContext';
